@@ -1,0 +1,16 @@
+<div class="section-nav-wrapper">
+    <div 
+        *ngFor="let section of getSections(); index as i"
+        class="nav-item"
+        [ngClass]="{ 'active-section': getActiveIndex() === i }"
+    >
+        <div class="nav-item-grid">
+            <div (click)="onNavItemClick(i)">
+                Section - {{ i + 1 }}
+            </div>
+            <div>
+                <button class="nav-btn"  (click)="onRemoveNavItemClick(i)">&cross;</button>
+            </div>
+        </div>
+    </div>
+</div>
