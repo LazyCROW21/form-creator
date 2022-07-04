@@ -45,4 +45,8 @@ export class FormService {
   removeSection(idx: number) {
     this.form.sections.splice(idx, 1);
   }
+
+  removeQuestion(questionIndex: number) {
+    this.form.sections[this.activeSection].questions.splice(questionIndex, 1);
+  }
 }

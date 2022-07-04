@@ -1,4 +1,4 @@
-.example-list {
+.q-list {
     width: 100%;
     min-height: 60px;
     display: block;
@@ -7,7 +7,7 @@
     overflow: hidden;
 }
 
-.example-box {
+.q-box {
     margin-bottom: 1rem;
     padding: 20px 10px;
     border: solid 1px #ccc;
@@ -19,6 +19,26 @@
     cursor: move;
     background: white;
     font-size: 14px;
+    position: relative;
+}
+
+.q-remove-btn {
+    position: absolute;
+    background-color: red;
+    color: white;
+    height: 1rem;
+    width: 1rem;
+    line-height: 1rem;
+    border-radius: 50%;
+    border: none;
+    top: 0.5rem;
+    right: 0.5rem;
+    cursor: pointer;
+}
+
+.q-remove-btn:hover {
+    background-color: salmon;
+    transition: all 100ms linear;
 }
 
 .cdk-drag-preview {
@@ -37,6 +57,6 @@
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+.q-list.cdk-drop-list-dragging .q-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

@@ -22,6 +22,10 @@ export class FormSectionComponent implements OnInit {
   getQuestions() {
     return this.getActiveForm().questions;
   }
+
+  onRemoveSection(idx: number) {
+    this.formService.removeQuestion(idx);
+  }
   
   drop(event: any) {
     moveItemInArray(this.getQuestions(), event.previousIndex, event.currentIndex);
