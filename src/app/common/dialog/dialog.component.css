@@ -1,0 +1,30 @@
+:host {
+    display: block;
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px 16px 16px;
+}
+
+.modal-dialog {
+    position: relative;
+    min-height: 400px;
+    min-width: 40vw;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0rem;
+    border-radius: 0.5rem;
+    height: 1rem;
+    width: 1rem;
+    border: none;
+    background-color: transparent;
+    color: grey;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: black;
+    transition: all 100ms linear;
+}

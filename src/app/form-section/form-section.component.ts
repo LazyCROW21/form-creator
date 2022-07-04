@@ -1,5 +1,7 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { AppDialog } from '../common/dialog/dialog.component';
 import { MySection } from '../common/form-type';
 import { FormService } from '../form-service/form-service.service';
 
@@ -10,7 +12,7 @@ import { FormService } from '../form-service/form-service.service';
 })
 export class FormSectionComponent implements OnInit {
 
-  constructor(private formService: FormService) { }
+  constructor(private formService: FormService, public dialog: Dialog) { }
 
   ngOnInit(): void {
   }
@@ -23,6 +25,13 @@ export class FormSectionComponent implements OnInit {
     return this.getActiveForm().questions;
   }
 
+  onAddQuestion() {
+    this.dialog.open(AppDialog, {
+      minWidth: '300px',
+      data: 'panda'
+    });
+  }
+  
   onRemoveSection(idx: number) {
     this.formService.removeQuestion(idx);
   }
