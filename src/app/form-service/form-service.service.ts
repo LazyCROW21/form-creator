@@ -5,16 +5,25 @@ import { MyForm } from '../common/form-type';
   providedIn: 'root'
 })
 export class FormService {
+  // use Observable & Subjects
   private activeSection: number = 0;
   private form: MyForm = {
     title: 'Demo Form',
     descrption: 'Demo form for demo purpose',
     sections: [
       {
-        title: 'Hello'
+        title: 'Hello',
+        questions: [
+          'question11',
+          'question12'
+        ]
       },
       {
-        title: 'Hey'
+        title: 'Hey',
+        questions: [
+          'question21',
+          'question22'
+        ]
       }
     ]
   }

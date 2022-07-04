@@ -1,5 +1,6 @@
 export type MySection = {
     title: string;
+    questions: string[];
 }
 
 export type MyForm = {

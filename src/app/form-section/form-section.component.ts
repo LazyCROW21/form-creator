@@ -1,3 +1,4 @@
+import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { MySection } from '../common/form-type';
 import { FormService } from '../form-service/form-service.service';
@@ -18,4 +19,11 @@ export class FormSectionComponent implements OnInit {
     return this.formService.getFrom().sections[this.formService.getActiveSection()];
   }
 
+  getQuestions() {
+    return this.getActiveForm().questions;
+  }
+  
+  drop(event: any) {
+    moveItemInArray(this.getQuestions(), event.previousIndex, event.currentIndex);
+  }
 }

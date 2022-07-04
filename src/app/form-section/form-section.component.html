@@ -1,5 +1,10 @@
 <div>
-    <h5>Title</h5>
+    <h5 class="small-title">Title: </h5>
     <p>{{ getActiveForm().title }}</p>
     <hr>
+    <br>
+    <h5 class="small-title">Questions: </h5>
+    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let question of getQuestions()" cdkDrag>{{ question }}</div>
+    </div>
 </div>
