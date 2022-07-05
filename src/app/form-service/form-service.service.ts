@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MyForm } from '../common/form-type';
+import { MyForm, QuestionTypes } from '../common/form-type';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +14,26 @@ export class FormService {
       {
         title: 'Hello',
         questions: [
-          'question11',
-          'question12'
+          {
+            type: QuestionTypes.Text,
+            key: 'a1',
+            props: {
+              placeholder: 'Hey Text',
+              label: 'Hey Text'
+            }
+          },
+          {
+            type: QuestionTypes.CheckBox,
+            key: 'a2',
+            props: {
+              label: 'Hey Checkbox'
+            }
+          }
         ]
       },
       {
         title: 'Hey',
-        questions: [
-          'question21',
-          'question22'
-        ]
+        questions: []
       }
     ]
   }

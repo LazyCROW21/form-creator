@@ -6,16 +6,29 @@
     <h5 class="small-title">Questions: </h5>
     <div class="q-list" cdkDropList (cdkDropListDropped)="drop($event)">
         <div class="q-box" *ngFor="let question of getQuestions(); index as i" cdkDrag>
-            <p>{{ question }}</p>
+            <div [ngSwitch]="question.type">
+                <ng-template [ngSwitchCase]="questionTypeText">
+                    <label [for]="question.key">{{ question.props.label }}</label>
+                    <input class="form-control" [placeholder]="question.props.placeholder" [id]="question.key">
+                </ng-template>
+                <ng-template [ngSwitchCase]="questionTypeCheckBox">
+                    <input type="checkbox" class="form-check" [id]="question.key">
+                    <label [for]="question.key">{{ question.props.label }}</label>
+                </ng-template>
+                <ng-template ngSwitchDefault>
+                    <p>{{ 'aaa' + question.key }}</p>
+                </ng-template>
+            </div>
             <button class="q-remove-btn" (click)="onRemoveSection(i)">&cross;</button>
         </div>
     </div>
     <div class="add-button-wrapper">
         <button class="q-add-btn" (click)="onAddQuestion()">Add question</button>
     </div>
-    <app-add-input-modal [show]="openAddModal" modalSize="md">
+    <app-add-input-modal [show]="showAddModal" modalSize="md">
         <div class="input-gen-wrapper">
-            <button class="close-btn">X</button>
+            <h2>Add Input</h2>
+            <button class="close-btn" (click)="showAddModal = !showAddModal">X</button>
             <app-input-generator></app-input-generator>
         </div>
     </app-add-input-modal>

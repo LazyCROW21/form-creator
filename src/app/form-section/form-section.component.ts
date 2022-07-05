@@ -1,7 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { MySection } from '../common/form-type';
+import { MySection, QuestionTypes } from '../common/form-type';
 import { FormService } from '../form-service/form-service.service';
 
 @Component({
@@ -10,12 +10,16 @@ import { FormService } from '../form-service/form-service.service';
   styleUrls: ['./form-section.component.css']
 })
 export class FormSectionComponent implements OnInit {
-  openAddModal: boolean = false;
+  questionTypeText: QuestionTypes = QuestionTypes.Text;
+  questionTypeCheckBox: QuestionTypes = QuestionTypes.CheckBox;
+  questionTypeRadio: QuestionTypes = QuestionTypes.Radio;
+  questionTypeSelect: QuestionTypes = QuestionTypes.Select;
+
+  showAddModal: boolean = false;
 
   constructor(private formService: FormService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   getActiveForm(): MySection {
     return this.formService.getFrom().sections[this.formService.getActiveSection()];
@@ -26,7 +30,7 @@ export class FormSectionComponent implements OnInit {
   }
 
   onAddQuestion() {
-    this.openAddModal = true;
+    this.showAddModal = true;
   }
   
   onRemoveSection(idx: number) {

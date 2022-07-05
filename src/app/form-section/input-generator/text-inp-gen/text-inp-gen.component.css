@@ -2,25 +2,18 @@
     margin-top: 1rem;
 }
 
-.form-control {
-    padding: 0.5rem;
+.preview-wrapper {
+    border: 1px solid black;
     border-radius: 0.25rem;
-    width: 100%;
-    margin-bottom: 1rem;
+    position: relative;
+    margin: 1rem 0rem;
+    padding: 0.5rem;
 }
 
-.add-btn {
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    border: none;
-    color: blue;
-    border: 1px solid blue;
-    background-color: transparent;
-    cursor: pointer;
-}
-
-.add-btn:hover {
-    background-color: blue;
-    color: white;
-    transition: all 150ms linear;
+.preview-wrapper .preview-label {
+    background-color: white;
+    padding: 0.25rem;
+    position: absolute;
+    top: -1rem;
+    left: 1.5rem;
 }

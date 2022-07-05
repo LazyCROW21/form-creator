@@ -1,17 +1,17 @@
 <div class="inp-gen-wrapper">
     <select class="form-select" (input)="newInputSelected($event)">
-    <option value="" selected disabled>choose</option>
-    <option value="text">text</option>
-    <option value="checkbox">checkbox</option>
-    <option value="radio">radio</option>
-    <option value="select">select</option>
-</select>
+        <option value="" selected disabled>choose</option>
+        <option value="text">text</option>
+        <option value="checkbox">checkbox</option>
+        <option value="radio">radio</option>
+        <option value="select">select</option>
+    </select>
 
-<div [ngSwitch]="selectInput">
-    <app-text-inp-gen *ngSwitchCase="'text'"></app-text-inp-gen>
-    <app-checkbox-inp-gen *ngSwitchCase="'checkbox'">checkbox input</app-checkbox-inp-gen>
-    <app-radio-inp-gen *ngSwitchCase="'radio'">Radio input</app-radio-inp-gen>
-    <app-select-inp-gen *ngSwitchCase="'select'">Select input</app-select-inp-gen>
-    <p *ngSwitchDefault>Please select a input</p>
-</div>
+    <div [ngSwitch]="selectInput">
+        <app-text-inp-gen *ngSwitchCase="'text'"></app-text-inp-gen>
+        <app-checkbox-inp-gen *ngSwitchCase="'checkbox'">checkbox input</app-checkbox-inp-gen>
+        <app-radio-inp-gen *ngSwitchCase="'radio'">Radio input</app-radio-inp-gen>
+        <app-select-inp-gen *ngSwitchCase="'select'">Select input</app-select-inp-gen>
+        <p *ngSwitchDefault>Please select a input</p>
+    </div>
 </div>

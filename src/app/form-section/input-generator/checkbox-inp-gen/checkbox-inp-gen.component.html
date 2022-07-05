@@ -1,1 +1,15 @@
-<p>checkbox-inp-gen works!</p>
+<div class="text-gen-wrapper">
+    <p>Label</p>
+    <input type="text" class="form-control" placeholder="Label" [(ngModel)]="label">
+    <hr style="margin: 0.5rem 0rem;">
+    <div class="preview-wrapper">
+        <span class="preview-label">Preview</span>
+        <br>
+        <div>
+            <input id="addcb" class="form-check" type="checkbox">
+            <label for="addcb">{{ label }}</label>
+        </div>
+    </div>
+    <hr style="margin: 0.5rem 0rem;">
+    <button class="add-btn" (click)="onAddInput()" [disabled]="isInvalid()">Add</button>
+</div>

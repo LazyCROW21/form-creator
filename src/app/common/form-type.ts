@@ -1,6 +1,28 @@
+export type TextQuestion = {
+    label: string;
+    placeholder: string;
+}
+
+export type CheckBoxQuestion = {
+    label: string;
+}
+
+export enum QuestionTypes {
+    Text,
+    CheckBox,
+    Radio,
+    Select
+}
+
+export type Question = {
+    type: QuestionTypes;
+    key: string;
+    props: any;
+}
+
 export type MySection = {
     title: string;
-    questions: string[];
+    questions: Question[];
 }
 
 export type MyForm = {

@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./checkbox-inp-gen.component.css']
 })
 export class CheckboxInpGenComponent implements OnInit {
+  label: string = '';
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
+  onAddInput() { }
+
+  isInvalid() { 
+    return this.label === '';
+  }
 }

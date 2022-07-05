@@ -13,6 +13,7 @@ import { TextInpGenComponent } from './form-section/input-generator/text-inp-gen
 import { CheckboxInpGenComponent } from './form-section/input-generator/checkbox-inp-gen/checkbox-inp-gen.component';
 import { RadioInpGenComponent } from './form-section/input-generator/radio-inp-gen/radio-inp-gen.component';
 import { SelectInpGenComponent } from './form-section/input-generator/select-inp-gen/select-inp-gen.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SelectInpGenComponent } from './form-section/input-generator/select-inp
   ],
   imports: [
     CommonModule,
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     DragDropModule
