@@ -1,7 +1,6 @@
 import { Dialog } from '@angular/cdk/dialog';
-import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { AppDialog } from './dialog/dialog.component';
 import { MySection } from '../common/form-type';
 import { FormService } from '../form-service/form-service.service';
 
@@ -11,8 +10,9 @@ import { FormService } from '../form-service/form-service.service';
   styleUrls: ['./form-section.component.css']
 })
 export class FormSectionComponent implements OnInit {
+  openAddModal: boolean = false;
 
-  constructor(private formService: FormService, public dialog: Dialog) { }
+  constructor(private formService: FormService) { }
 
   ngOnInit(): void {
   }
@@ -26,17 +26,14 @@ export class FormSectionComponent implements OnInit {
   }
 
   onAddQuestion() {
-    this.dialog.open(AppDialog, {
-      minWidth: '300px',
-      data: 'panda'
-    });
+    this.openAddModal = true;
   }
   
   onRemoveSection(idx: number) {
     this.formService.removeQuestion(idx);
   }
   
-  drop(event: any) {
+  drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.getQuestions(), event.previousIndex, event.currentIndex);
   }
 }

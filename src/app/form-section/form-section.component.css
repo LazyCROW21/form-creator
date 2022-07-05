@@ -74,3 +74,28 @@
 .q-list.cdk-drop-list-dragging .q-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+.input-gen-wrapper {
+    padding: 0.5rem;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    background: transparent;
+    color: gray;
+    line-height: 1.5rem;
+    font-size: 1.25rem;
+    border: none;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: rgb(89, 88, 88);
+    transition: 100ms all linear;
+}

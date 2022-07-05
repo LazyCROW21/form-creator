@@ -4,7 +4,7 @@
     <hr>
     <br>
     <h5 class="small-title">Questions: </h5>
-    <div cdkDropList class="q-list" (cdkDropListDropped)="drop($event)">
+    <div class="q-list" cdkDropList (cdkDropListDropped)="drop($event)">
         <div class="q-box" *ngFor="let question of getQuestions(); index as i" cdkDrag>
             <p>{{ question }}</p>
             <button class="q-remove-btn" (click)="onRemoveSection(i)">&cross;</button>
@@ -13,4 +13,10 @@
     <div class="add-button-wrapper">
         <button class="q-add-btn" (click)="onAddQuestion()">Add question</button>
     </div>
+    <app-add-input-modal [show]="openAddModal" modalSize="md">
+        <div class="input-gen-wrapper">
+            <button class="close-btn">X</button>
+            <app-input-generator></app-input-generator>
+        </div>
+    </app-add-input-modal>
 </div>

@@ -1,0 +1,26 @@
+.text-gen-wrapper {
+    margin-top: 1rem;
+}
+
+.form-control {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.add-btn {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    color: blue;
+    border: 1px solid blue;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background-color: blue;
+    color: white;
+    transition: all 150ms linear;
+}
