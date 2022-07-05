@@ -1,7 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { AppDialog } from '../common/dialog/dialog.component';
+import { AppDialog } from './dialog/dialog.component';
 import { MySection } from '../common/form-type';
 import { FormService } from '../form-service/form-service.service';
 
