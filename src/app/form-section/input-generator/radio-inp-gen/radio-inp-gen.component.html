@@ -1,1 +1,34 @@
-<p>radio-inp-gen works!</p>
+<div class="text-gen-wrapper">
+    <p>Group Label</p>
+    <input type="text" class="form-control" placeholder="Group label" [(ngModel)]="glabel">
+    <p>Options</p>
+    <div class="option-grid">
+        <input class="form-control" type="text" placeholder="Label" [(ngModel)]="optionLabel">
+        <input class="form-control" type="text" placeholder="Value" [(ngModel)]="optionValue">
+        <button style="margin-bottom: 1rem;" (click)="addOption()" [disabled]="!isValidOption()">Add</button>
+    </div>
+    <div>
+        <div class="option-grid">
+            <p><strong>Label</strong></p>
+            <p><strong>Value</strong></p>
+            <p><strong>Action</strong></p>
+        </div>
+        <div *ngFor="let option of options; index as i" class="option-grid">
+            <p>{{ option.label }}</p>
+            <p>{{ option.value }}</p>
+            <button (click)="removeOption(i)">X</button>
+        </div>
+    </div>
+    <hr style="margin: 0.5rem 0rem;">
+    <div class="preview-wrapper">
+        <span class="preview-label">Preview</span>
+        <br>
+        <p>{{ glabel }}</p>
+        <div *ngFor="let option of options; index as i">
+            <input type="radio" name="a3" [value]="option.value">
+            <span>{{ option.label }}</span>
+        </div>
+    </div>
+    <hr style="margin: 0.5rem 0rem;">
+    <button class="add-btn" (click)="onAddInput()" [disabled]="isInvalid()">Add</button>
+</div>

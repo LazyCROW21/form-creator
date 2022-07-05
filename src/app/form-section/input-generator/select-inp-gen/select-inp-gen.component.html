@@ -1,1 +1,35 @@
-<p>select-inp-gen works!</p>
+<div class="text-gen-wrapper">
+    <p>Label</p>
+    <input type="text" class="form-control" placeholder="Label" [(ngModel)]="label">
+    <p>Options</p>
+    <div class="option-grid">
+        <input class="form-control" type="text" placeholder="Label" [(ngModel)]="optionLabel">
+        <input class="form-control" type="text" placeholder="Value" [(ngModel)]="optionValue">
+        <button style="margin-bottom: 1rem;" (click)="addOption()" [disabled]="!isValidOption()">Add</button>
+    </div>
+    <div>
+        <div class="option-grid">
+            <p><strong>Label</strong></p>
+            <p><strong>Value</strong></p>
+            <p><strong>Action</strong></p>
+        </div>
+        <div *ngFor="let option of options; index as i" class="option-grid">
+            <p>{{ option.label }}</p>
+            <p>{{ option.value }}</p>
+            <button (click)="removeOption(i)">X</button>
+        </div>
+    </div>
+    <hr style="margin: 0.5rem 0rem;">
+    <div class="preview-wrapper">
+        <span class="preview-label">Preview</span>
+        <br>
+        <p>{{ label }}</p>
+        <select class="form-control">
+            <option *ngFor="let option of options" [value]="option.value">
+                {{ option.label }}
+            </option>
+        </select>
+    </div>
+    <hr style="margin: 0.5rem 0rem;">
+    <button class="add-btn" (click)="onAddInput()" [disabled]="isInvalid()">Add</button>
+</div>
