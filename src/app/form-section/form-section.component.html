@@ -44,7 +44,7 @@
         <div class="input-gen-wrapper">
             <h2>Add Input</h2>
             <button class="close-btn" (click)="closeModal()">X</button>
-            <app-input-generator [closeModalFn]="closeModal"></app-input-generator>
+            <app-input-generator (addQuestion)="closeModal()"></app-input-generator>
         </div>
     </app-add-input-modal>
 </div>

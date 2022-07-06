@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CheckBoxQuestion, MyForm, Question, QuestionTypes, RadioQuestion, SelectQuestion, TextQuestion } from '../common/form-type';
+import { CheckBoxQuestion, MyForm, MySection, Question, QuestionTypes, RadioQuestion, SelectQuestion, TextQuestion } from '../common/form-type';
 
 @Injectable({
   providedIn: 'root'
@@ -129,6 +129,15 @@ export class FormService {
   setActiveSection(idx: number) {
     this.activeSectionValue = idx;
     this.activeSection.next(idx);
+  }
+
+  addSection() {
+    const newSection: MySection = {
+      title: 'New Section',
+      questions: []
+    }
+    this.formValue.sections.push(newSection);
+    this.form.next({ ...this.formValue });
   }
 
   removeSection(idx: number) {

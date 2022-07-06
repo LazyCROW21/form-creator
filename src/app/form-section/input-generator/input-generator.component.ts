@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-input-generator',
@@ -6,8 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./input-generator.component.css']
 })
 export class InputGeneratorComponent implements OnInit {
-  @Input('closeModalFn')
-  closeModalFn: Function = () => {};
+  @Output('addQuestion')
+  closeModalEvent: EventEmitter<null> = new EventEmitter<null>();
 
   selectInput: string = '';
 
@@ -20,7 +20,8 @@ export class InputGeneratorComponent implements OnInit {
     this.selectInput = target.value;
   }
 
-  // closeModel() {
-  //   this.closeModalFn()
-  // }
+  emitCloseModal() {
+    this.selectInput = '';
+    this.closeModalEvent.emit();
+  }
 }

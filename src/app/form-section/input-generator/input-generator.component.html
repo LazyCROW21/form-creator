@@ -8,10 +8,10 @@
     </select>
 
     <div [ngSwitch]="selectInput">
-        <app-text-inp-gen (addQuestion)="closeModalFn()" *ngSwitchCase="'text'"></app-text-inp-gen>
-        <app-checkbox-inp-gen (addQuestion)="closeModalFn()" *ngSwitchCase="'checkbox'">checkbox input</app-checkbox-inp-gen>
-        <app-radio-inp-gen (addQuestion)="closeModalFn()" *ngSwitchCase="'radio'">Radio input</app-radio-inp-gen>
-        <app-select-inp-gen (addQuestion)="closeModalFn()" *ngSwitchCase="'select'">Select input</app-select-inp-gen>
+        <app-text-inp-gen (addQuestion)="emitCloseModal()" *ngSwitchCase="'text'"></app-text-inp-gen>
+        <app-checkbox-inp-gen (addQuestion)="emitCloseModal()" *ngSwitchCase="'checkbox'">checkbox input</app-checkbox-inp-gen>
+        <app-radio-inp-gen (addQuestion)="emitCloseModal()" *ngSwitchCase="'radio'">Radio input</app-radio-inp-gen>
+        <app-select-inp-gen (addQuestion)="emitCloseModal()" *ngSwitchCase="'select'">Select input</app-select-inp-gen>
         <p *ngSwitchDefault>Please select a input</p>
     </div>
 </div>

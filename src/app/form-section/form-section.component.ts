@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { MyForm, MySection, QuestionTypes } from '../common/form-type';
+import { MyForm, QuestionTypes } from '../common/form-type';
 import { FormService } from '../form-service/form-service.service';
 
 @Component({

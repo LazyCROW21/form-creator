@@ -32,6 +32,10 @@ export class FormSectionNavComponent implements OnInit, OnDestroy {
     this.formService.setActiveSection(idx);
   }
 
+  onAddSection() {
+    this.formService.addSection();
+  }
+
   onRemoveNavItemClick(idx: number) {
     this.formService.removeSection(idx);
   }

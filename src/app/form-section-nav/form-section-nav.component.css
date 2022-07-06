@@ -1,5 +1,6 @@
 .section-nav-wrapper {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .nav-item {
@@ -24,4 +25,20 @@
 
 .active-section {
     border: 1px solid blue;
+}
+
+.add-section-btn {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin: 0.5rem 1rem;
+    border: 1px solid green;
+    background-color: transparent;
+    color: green;
+    cursor: pointer;
+}
+
+.add-section-btn:hover {
+    color: white;
+    background-color: green;
+    transition: all linear 100ms;
 }
