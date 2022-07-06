@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
-type Option = {
-  label: string;
-  value: string;
-};
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Option, RadioQuestion } from 'src/app/common/form-type';
+import { FormService } from 'src/app/form-service/form-service.service';
 
 @Component({
   selector: 'app-radio-inp-gen',
@@ -11,12 +8,15 @@ type Option = {
   styleUrls: ['./radio-inp-gen.component.css']
 })
 export class RadioInpGenComponent implements OnInit {
+  @Output('addQuestion')
+  addQuestionEvent: EventEmitter<null> = new EventEmitter<null>();
+  
   glabel: string = '';
   options: Option[] = [];
   optionLabel: string = '';
   optionValue: string = '';
 
-  constructor() { }
+  constructor(private formService: FormService) { }
 
   ngOnInit(): void { }
 
@@ -34,7 +34,15 @@ export class RadioInpGenComponent implements OnInit {
     return this.optionLabel && this.optionValue;
   }
 
-  onAddInput() { }
+  onAddInput() {
+    const newQuestion: RadioQuestion = {
+      groupLabel: this.glabel,
+      options: this.options
+    }
+    this.formService.addRadioQuestion(newQuestion);
+    this.addQuestionEvent.emit();
+    console.log('ADASD')
+  }
 
   isInvalid() { 
     return this.glabel === '' || this.options.length === 0;

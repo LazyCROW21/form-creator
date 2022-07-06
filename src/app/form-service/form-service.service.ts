@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { MyForm, QuestionTypes } from '../common/form-type';
+import { BehaviorSubject } from 'rxjs';
+import { CheckBoxQuestion, MyForm, Question, QuestionTypes, RadioQuestion, SelectQuestion, TextQuestion } from '../common/form-type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormService {
-  // use Observable & Subjects
-  private activeSection: number = 0;
-  private form: MyForm = {
+  public activeSection = new BehaviorSubject<number>(0);
+  private activeSectionValue: number = 0;
+  public form = new BehaviorSubject<MyForm>({
     title: 'Demo Form',
     descrption: 'Demo form for demo purpose',
     sections: [
@@ -28,6 +29,80 @@ export class FormService {
             props: {
               label: 'Hey Checkbox'
             }
+          },
+          {
+            type: QuestionTypes.Radio,
+            key: 'a3',
+            props: {
+              groupLabel: 'Hey Radio',
+              options: [
+                { label: 'Option1', value: 'Option1' },
+                { label: 'Option2', value: 'Option2' }
+              ]
+            }
+          },
+          {
+            type: QuestionTypes.Select,
+            key: 'a4',
+            props: {
+              label: 'Hey Select',
+              options: [
+                { label: 'SOption1', value: 'SOption1' },
+                { label: 'SOption2', value: 'SOption2' }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        title: 'Hey',
+        questions: []
+      }
+    ]
+  });
+  private formValue: MyForm = {
+    title: 'Demo Form',
+    descrption: 'Demo form for demo purpose',
+    sections: [
+      {
+        title: 'Hello',
+        questions: [
+          {
+            type: QuestionTypes.Text,
+            key: 'a1',
+            props: {
+              placeholder: 'Hey Text',
+              label: 'Hey Text'
+            }
+          },
+          {
+            type: QuestionTypes.CheckBox,
+            key: 'a2',
+            props: {
+              label: 'Hey Checkbox'
+            }
+          },
+          {
+            type: QuestionTypes.Radio,
+            key: 'a3',
+            props: {
+              groupLabel: 'Hey Radio',
+              options: [
+                { label: 'Option1', value: 'Option1' },
+                { label: 'Option2', value: 'Option2' }
+              ]
+            }
+          },
+          {
+            type: QuestionTypes.Select,
+            key: 'a4',
+            props: {
+              label: 'Hey Select',
+              options: [
+                { label: 'SOption1', value: 'SOption1' },
+                { label: 'SOption2', value: 'SOption2' }
+              ]
+            }
           }
         ]
       },
@@ -38,25 +113,71 @@ export class FormService {
     ]
   }
 
-  constructor() { }
-
-  getFrom() {
-    return this.form;
+  constructor() {
+    // this.activeSection.next(0);
+    // this.form.next(this.formValue);
   }
 
-  getActiveSection() {
-    return this.activeSection;
-  }
+  // getFrom() {
+  //   return this.form;
+  // }
+
+  // getActiveSection() {
+  //   return this.activeSection;
+  // }
 
   setActiveSection(idx: number) {
-    this.activeSection = idx;
+    this.activeSectionValue = idx;
+    this.activeSection.next(idx);
   }
 
   removeSection(idx: number) {
-    this.form.sections.splice(idx, 1);
+    this.formValue.sections.splice(idx, 1);
+    this.form.next({ ...this.formValue });
+  }
+
+  addTextQuestion(textQuestion: TextQuestion) {
+    const question: Question = {
+      type: QuestionTypes.Text,
+      key: 'text-' + this.activeSectionValue + '-' + new Date().getTime(),
+      props: textQuestion
+    }
+    this.formValue.sections[this.activeSectionValue].questions.push(question);
+    this.form.next({ ...this.formValue });
+  }
+
+  addCheckBoxQuestion(checkBoxQuestion: CheckBoxQuestion) {
+    const question: Question = {
+      type: QuestionTypes.CheckBox,
+      key: 'checkbox-' + this.activeSectionValue + '-' + new Date().getTime(),
+      props: checkBoxQuestion
+    }
+    this.formValue.sections[this.activeSectionValue].questions.push(question);
+    this.form.next({ ...this.formValue });
+  }
+
+  addRadioQuestion(radioQuestion: RadioQuestion) {
+    const question: Question = {
+      type: QuestionTypes.Radio,
+      key: 'radio-' + this.activeSectionValue + '-' + new Date().getTime(),
+      props: radioQuestion
+    }
+    this.formValue.sections[this.activeSectionValue].questions.push(question);
+    this.form.next({ ...this.formValue });
+  }
+
+  addSelectQuestion(selectQuestion: SelectQuestion) {
+    const question: Question = {
+      type: QuestionTypes.Select,
+      key: 'select-' + this.activeSectionValue + '-' + new Date().getTime(),
+      props: selectQuestion
+    }
+    this.formValue.sections[this.activeSectionValue].questions.push(question);
+    this.form.next({ ...this.formValue });
   }
 
   removeQuestion(questionIndex: number) {
-    this.form.sections[this.activeSection].questions.splice(questionIndex, 1);
+    this.formValue.sections[this.activeSectionValue].questions.splice(questionIndex, 1);
+    this.form.next({ ...this.formValue });
   }
 }

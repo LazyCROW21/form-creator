@@ -1,8 +1,8 @@
 <div class="section-nav-wrapper">
     <div 
-        *ngFor="let section of getSections(); index as i"
+        *ngFor="let section of activeForm.sections; index as i"
         class="nav-item"
-        [ngClass]="{ 'active-section': getActiveIndex() === i }"
+        [ngClass]="{ 'active-section': activeSection === i }"
     >
         <div class="nav-item-grid">
             <div (click)="onNavItemClick(i)">

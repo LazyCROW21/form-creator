@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MySection } from '../common/form-type';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MyForm, MySection } from '../common/form-type';
 import { FormService } from '../form-service/form-service.service';
 
 @Component({
@@ -7,19 +8,25 @@ import { FormService } from '../form-service/form-service.service';
   templateUrl: './form-section-nav.component.html',
   styleUrls: ['./form-section-nav.component.css']
 })
-export class FormSectionNavComponent implements OnInit {
+export class FormSectionNavComponent implements OnInit, OnDestroy {
 
-  constructor(private formService: FormService) { }
+  formSubscription: Subscription;
+  actionSectionSubscription: Subscription;
+  activeForm: MyForm;
+  activeSection: number;
 
+  constructor(private formService: FormService) {
+    this.activeForm = { title: '', descrption: '', sections: [] };
+    this.activeSection = 0;
+    this.formSubscription = this.formService.form.subscribe((newForm) => {
+      this.activeForm = newForm;
+    });
+    this.actionSectionSubscription = this.formService.activeSection.subscribe((idx) => {
+      this.activeSection = idx;
+    });
+  }
+  
   ngOnInit(): void { }
-
-  getSections(): MySection[] {
-    return this.formService.getFrom().sections;
-  }
-
-  getActiveIndex() {
-    return this.formService.getActiveSection();
-  }
 
   onNavItemClick(idx: number) {
     this.formService.setActiveSection(idx);
@@ -27,5 +34,10 @@ export class FormSectionNavComponent implements OnInit {
 
   onRemoveNavItemClick(idx: number) {
     this.formService.removeSection(idx);
+  }
+
+  ngOnDestroy(): void {
+    this.formSubscription.unsubscribe();
+    this.actionSectionSubscription.unsubscribe();
   }
 }

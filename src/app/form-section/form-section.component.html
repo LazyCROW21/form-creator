@@ -1,11 +1,11 @@
 <div>
     <h5 class="small-title">Title: </h5>
-    <p>{{ getActiveForm().title }}</p>
+    <p>{{ activeForm.sections[activeSection].title }}</p>
     <hr>
     <br>
     <h5 class="small-title">Questions: </h5>
     <div class="q-list" cdkDropList (cdkDropListDropped)="drop($event)">
-        <div class="q-box" *ngFor="let question of getQuestions(); index as i" cdkDrag>
+        <div class="q-box" *ngFor="let question of activeForm.sections[activeSection].questions; index as i" cdkDrag>
             <div [ngSwitch]="question.type">
                 <ng-template [ngSwitchCase]="questionTypeText">
                     <label [for]="question.key">{{ question.props.label }}</label>
@@ -14,6 +14,21 @@
                 <ng-template [ngSwitchCase]="questionTypeCheckBox">
                     <input type="checkbox" class="form-check" [id]="question.key">
                     <label [for]="question.key">{{ question.props.label }}</label>
+                </ng-template>
+                <ng-template [ngSwitchCase]="questionTypeRadio">
+                    <p>{{ question.props.groupLabel }}</p>
+                    <div *ngFor="let option of question.props.options; index as i">
+                        <input type="radio" [name]="question.key" [value]="option.value" [id]="question.key + '-' + i">
+                        <label [for]="question.key + '-' + i">{{ option.label }}</label>
+                    </div>
+                </ng-template>
+                <ng-template [ngSwitchCase]="questionTypeSelect">
+                    <p>{{ question.props.label }}</p>
+                    <select class="form-control">
+                        <option *ngFor="let option of question.props.options" [value]="option.value">
+                            {{ option.label }}
+                        </option>
+                    </select>
                 </ng-template>
                 <ng-template ngSwitchDefault>
                     <p>{{ 'aaa' + question.key }}</p>
@@ -28,8 +43,8 @@
     <app-add-input-modal [show]="showAddModal" modalSize="md">
         <div class="input-gen-wrapper">
             <h2>Add Input</h2>
-            <button class="close-btn" (click)="showAddModal = !showAddModal">X</button>
-            <app-input-generator></app-input-generator>
+            <button class="close-btn" (click)="closeModal()">X</button>
+            <app-input-generator [closeModalFn]="closeModal"></app-input-generator>
         </div>
     </app-add-input-modal>
 </div>

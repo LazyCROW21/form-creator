@@ -1,3 +1,8 @@
+export type Option = {
+    label: string;
+    value: string;
+}
+
 export type TextQuestion = {
     label: string;
     placeholder: string;
@@ -5,6 +10,16 @@ export type TextQuestion = {
 
 export type CheckBoxQuestion = {
     label: string;
+}
+
+export type RadioQuestion = {
+    groupLabel: string;
+    options: Option[];
+}
+
+export type SelectQuestion = {
+    label: string;
+    options: Option[];
 }
 
 export enum QuestionTypes {

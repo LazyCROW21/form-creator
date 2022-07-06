@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
-type Option = {
-  label: string;
-  value: string;
-};
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Option, SelectQuestion } from 'src/app/common/form-type';
+import { FormService } from 'src/app/form-service/form-service.service';
 
 @Component({
   selector: 'app-select-inp-gen',
@@ -11,11 +8,14 @@ type Option = {
   styleUrls: ['./select-inp-gen.component.css']
 })
 export class SelectInpGenComponent implements OnInit {
+  @Output('addQuestion')
+  addQuestionEvent: EventEmitter<null> = new EventEmitter<null>();
+  
   label: string = '';
   options: Option[] = [];
   optionLabel: string = '';
   optionValue: string = '';
-  constructor() { }
+  constructor(private formService: FormService) { }
 
   ngOnInit(): void {
   }
@@ -34,9 +34,17 @@ export class SelectInpGenComponent implements OnInit {
     return this.optionLabel && this.optionValue;
   }
 
-  onAddInput() { }
-
   isInvalid() {
     return this.label === '' || this.options.length === 0;
+  }
+
+  onAddInput() {
+    const newQuestion: SelectQuestion = {
+      label: this.label,
+      options: this.options
+    }
+    this.formService.addSelectQuestion(newQuestion);
+    this.addQuestionEvent.emit();
+    console.log('ADASD')
   }
 }

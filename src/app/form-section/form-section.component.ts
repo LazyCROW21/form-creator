@@ -1,7 +1,7 @@
-import { Dialog } from '@angular/cdk/dialog';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
-import { MySection, QuestionTypes } from '../common/form-type';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MyForm, MySection, QuestionTypes } from '../common/form-type';
 import { FormService } from '../form-service/form-service.service';
 
 @Component({
@@ -9,24 +9,34 @@ import { FormService } from '../form-service/form-service.service';
   templateUrl: './form-section.component.html',
   styleUrls: ['./form-section.component.css']
 })
-export class FormSectionComponent implements OnInit {
+export class FormSectionComponent implements OnInit, OnDestroy {
   questionTypeText: QuestionTypes = QuestionTypes.Text;
   questionTypeCheckBox: QuestionTypes = QuestionTypes.CheckBox;
   questionTypeRadio: QuestionTypes = QuestionTypes.Radio;
   questionTypeSelect: QuestionTypes = QuestionTypes.Select;
 
   showAddModal: boolean = false;
+  formSubscription: Subscription;
+  actionSectionSubscription: Subscription;
+  activeForm: MyForm;
+  activeSection: number;
 
-  constructor(private formService: FormService) { }
-
-  ngOnInit(): void { }
-
-  getActiveForm(): MySection {
-    return this.formService.getFrom().sections[this.formService.getActiveSection()];
+  constructor(private formService: FormService) {
+    this.activeForm = { title: '', descrption: '', sections: [] };
+    this.activeSection = 0;
+    this.formSubscription = this.formService.form.subscribe((newForm) => {
+      this.activeForm = newForm;
+    });
+    this.actionSectionSubscription = this.formService.activeSection.subscribe((idx) => {
+      this.activeSection = idx;
+    });
   }
 
-  getQuestions() {
-    return this.getActiveForm().questions;
+  closeModal() {
+    this.showAddModal = false;
+  }
+
+  ngOnInit(): void { 
   }
 
   onAddQuestion() {
@@ -38,6 +48,13 @@ export class FormSectionComponent implements OnInit {
   }
   
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.getQuestions(), event.previousIndex, event.currentIndex);
+    moveItemInArray(this.activeForm.sections[this.activeSection].questions, event.previousIndex, event.currentIndex);
+    // move reordering logic to service
+    this.formService.form.next({ ...this.activeForm });
+  }
+
+  ngOnDestroy(): void {
+    this.formSubscription.unsubscribe();
+    this.actionSectionSubscription.unsubscribe();
   }
 }
