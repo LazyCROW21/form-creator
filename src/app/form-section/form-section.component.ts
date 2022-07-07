@@ -21,6 +21,9 @@ export class FormSectionComponent implements OnInit, OnDestroy {
   activeForm: MyForm;
   activeSection: number;
 
+  titleTypingTimer: any;
+  doneTypingInterval = 3000;  
+
   constructor(private formService: FormService) {
     this.activeForm = { title: '', description: '', sections: [] };
     this.activeSection = 0;
@@ -41,6 +44,7 @@ export class FormSectionComponent implements OnInit, OnDestroy {
 
   onAddQuestion() {
     this.showAddModal = true;
+    console.log('Khul jaa sim sim')
   }
   
   onRemoveSection(idx: number) {
@@ -50,6 +54,21 @@ export class FormSectionComponent implements OnInit, OnDestroy {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.activeForm.sections[this.activeSection].questions, event.previousIndex, event.currentIndex);
     // move reordering logic to service
+    this.formService.form.next({ ...this.activeForm });
+  }
+  
+  stopTypingTitle() {
+    clearTimeout(this.titleTypingTimer);
+    this.titleTypingTimer = setTimeout(this.doneTyping, this.doneTypingInterval);
+  }
+
+  startTypingTitle() {
+    if(this.titleTypingTimer) {
+      clearTimeout(this.titleTypingTimer);
+    }
+  }
+
+  doneTyping() {
     this.formService.form.next({ ...this.activeForm });
   }
 

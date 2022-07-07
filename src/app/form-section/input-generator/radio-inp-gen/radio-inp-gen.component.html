@@ -5,18 +5,21 @@
     <div class="option-grid">
         <input class="form-control" type="text" placeholder="Label" [(ngModel)]="optionLabel">
         <input class="form-control" type="text" placeholder="Value" [(ngModel)]="optionValue">
-        <button style="margin-bottom: 1rem;" (click)="addOption()" [disabled]="!isValidOption()">Add</button>
+        <button class="waves-effect waves-light btn" style="margin-bottom: 1rem;" (click)="addOption()"
+            [disabled]="!isValidOption()">Add</button>
     </div>
     <div>
         <div class="option-grid">
             <p><strong>Label</strong></p>
             <p><strong>Value</strong></p>
-            <p><strong>Action</strong></p>
+            <p class="center-align"><strong>Action</strong></p>
         </div>
         <div *ngFor="let option of options; index as i" class="option-grid">
             <p>{{ option.label }}</p>
             <p>{{ option.value }}</p>
-            <button (click)="removeOption(i)">X</button>
+            <button class="waves-effect waves-teal btn-flat" (click)="removeOption(i)">
+                <i class="material-icons">clear</i>
+            </button>
         </div>
     </div>
     <hr style="margin: 0.5rem 0rem;">
@@ -24,11 +27,13 @@
         <span class="preview-label">Preview</span>
         <br>
         <p>{{ glabel }}</p>
-        <div *ngFor="let option of options; index as i">
-            <input type="radio" name="a3" [value]="option.value">
-            <span>{{ option.label }}</span>
-        </div>
+        <p *ngFor="let option of options; index as i">
+            <label>
+                <input class="with-gap" name="a3" type="radio" [value]="option.value" />
+                <span>{{ option.label }}</span>
+            </label>
+        </p>
     </div>
     <hr style="margin: 0.5rem 0rem;">
-    <button class="add-btn" (click)="onAddInput()" [disabled]="isInvalid()">Add</button>
+    <button class="waves-effect waves-light btn blue" (click)="onAddInput()" [disabled]="isInvalid()">Add</button>
 </div>

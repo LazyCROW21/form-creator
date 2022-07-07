@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CheckBoxQuestion, MyForm, MySection, Question, QuestionTypes, RadioQuestion, SelectQuestion, TextQuestion } from '../common/form-type';
+import { 
+  CheckBoxQuestion, 
+  MyForm, 
+  MySection, 
+  Question, 
+  QuestionTypes, 
+  RadioQuestion, 
+  SelectQuestion, 
+  TextQuestion 
+} from '../common/form-type';
 
 @Injectable({
   providedIn: 'root'

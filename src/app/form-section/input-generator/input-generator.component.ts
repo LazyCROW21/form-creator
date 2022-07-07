@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+declare var M: any;
 
 @Component({
   selector: 'app-input-generator',
@@ -10,6 +11,7 @@ export class InputGeneratorComponent implements OnInit {
   closeModalEvent: EventEmitter<null> = new EventEmitter<null>();
 
   selectInput: string = '';
+  initSelect: boolean = false;
 
   constructor() { }
 

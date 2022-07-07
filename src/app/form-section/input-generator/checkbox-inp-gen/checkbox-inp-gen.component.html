@@ -5,11 +5,13 @@
     <div class="preview-wrapper">
         <span class="preview-label">Preview</span>
         <br>
-        <div>
-            <input id="addcb" class="form-check" type="checkbox">
-            <label for="addcb">{{ label }}</label>
-        </div>
+        <p>
+            <label>
+                <input type="checkbox" />
+                <span>{{ label }}</span>
+            </label>
+        </p>
     </div>
     <hr style="margin: 0.5rem 0rem;">
-    <button class="add-btn" (click)="onAddInput()" [disabled]="isInvalid()">Add</button>
+    <button class="waves-effect waves-light btn blue" (click)="onAddInput()" [disabled]="isInvalid()">Add</button>
 </div>

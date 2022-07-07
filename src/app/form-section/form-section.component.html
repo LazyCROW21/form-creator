@@ -1,36 +1,53 @@
 <div>
-    <h5 class="small-title">Title: </h5>
-    <p>{{ activeForm.sections[activeSection].title }}</p>
-    <hr>
+    <div class="input-field">
+        <input 
+            [id]="'s-' + activeSection + '-title'" 
+            type="text" 
+            class="validate" 
+            [(ngModel)]="activeForm.sections[activeSection].title"
+            (keydown)="startTypingTitle()"
+            (keyup)="stopTypingTitle()"
+        >
+        <label [for]="'s-' + activeSection + '-title'" class="active">Title</label>
+    </div>
+    <div class="divider"></div>
     <br>
     <h5 class="small-title">Questions: </h5>
     <div class="q-list" cdkDropList (cdkDropListDropped)="drop($event)">
-        <div class="q-box z-depth-1" *ngFor="let question of activeForm.sections[activeSection].questions; index as i" cdkDrag>
+        <div class="q-box z-depth-1" *ngFor="let question of activeForm.sections[activeSection].questions; index as i"
+            cdkDrag>
             <div [ngSwitch]="question.type">
                 <ng-template [ngSwitchCase]="questionTypeText">
                     <label [for]="question.key">{{ question.props.label }}</label>
                     <input class="form-control" [placeholder]="question.props.placeholder" [id]="question.key">
                 </ng-template>
                 <ng-template [ngSwitchCase]="questionTypeCheckBox">
-                    <input type="checkbox" [id]="question.key">
-                    <label [for]="question.key">{{ question.props.label }}</label>
+                    <p>
+                        <label>
+                            <input type="checkbox" [id]="question.key"/>
+                            <span>{{ question.props.label }}</span>
+                        </label>
+                    </p>
                 </ng-template>
                 <ng-template [ngSwitchCase]="questionTypeRadio">
                     <p>{{ question.props.groupLabel }}</p>
                     <p *ngFor="let option of question.props.options; index as i">
                         <label>
-                            <input class="with-gap" type="radio" [name]="question.key" [value]="option.value" [id]="question.key + '-' + i">
+                            <input class="with-gap" type="radio" [name]="question.key" [value]="option.value"
+                                [id]="question.key + '-' + i">
                             <span>{{ option.label }}</span>
                         </label>
                     </p>
                 </ng-template>
                 <ng-template [ngSwitchCase]="questionTypeSelect">
-                    <p>{{ question.props.label }}</p>
-                    <select class="form-control">
-                        <option *ngFor="let option of question.props.options" [value]="option.value">
-                            {{ option.label }}
-                        </option>
-                    </select>
+                    <div class="input-field">
+                        <select>
+                            <option *ngFor="let option of question.props.options" [value]="option.value">
+                                {{ option.label }}
+                            </option>
+                        </select>
+                        <label>{{ question.props.label }}</label>
+                    </div>
                 </ng-template>
                 <ng-template ngSwitchDefault>
                     <p>{{ 'aaa' + question.key }}</p>
@@ -42,12 +59,14 @@
         </div>
     </div>
     <div class="add-button-wrapper">
-        <button class="q-add-btn" (click)="onAddQuestion()">Add question</button>
+        <button class="waves-effect waves-light btn" (click)="onAddQuestion()">Add question</button>
     </div>
     <app-add-input-modal [show]="showAddModal" modalSize="md">
         <div class="input-gen-wrapper">
             <h2>Add Input</h2>
-            <button class="close-btn" (click)="closeModal()">X</button>
+            <button class="close-btn" (click)="closeModal()">
+                <i class="material-icons">cancel</i>
+            </button>
             <app-input-generator (addQuestion)="closeModal()"></app-input-generator>
         </div>
     </app-add-input-modal>

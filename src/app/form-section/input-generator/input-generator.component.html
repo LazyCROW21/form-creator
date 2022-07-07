@@ -1,11 +1,14 @@
 <div class="inp-gen-wrapper">
-    <select class="form-select" (input)="newInputSelected($event)">
-        <option value="" selected disabled>choose</option>
-        <option value="text">text</option>
-        <option value="checkbox">checkbox</option>
-        <option value="radio">radio</option>
-        <option value="select">select</option>
-    </select>
+    <div class="input-field">
+        <select (change)="newInputSelected($event)">
+            <option value="" selected disabled>choose</option>
+            <option value="text">text</option>
+            <option value="checkbox">checkbox</option>
+            <option value="radio">radio</option>
+            <option value="select">select</option>
+        </select>
+        <label>Select input type</label>
+    </div>
 
     <div [ngSwitch]="selectInput">
         <app-text-inp-gen (addQuestion)="emitCloseModal()" *ngSwitchCase="'text'"></app-text-inp-gen>

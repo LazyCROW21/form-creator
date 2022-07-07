@@ -1,5 +1,5 @@
-<div *ngIf="isOpen" class="backdrop" (click)="onBackDropClicked()">
-    <div class="modal" [ngClass]="[ modalSize ]">
+<div *ngIf="isOpen" class="mybackdrop" (click)="onBackDropClicked()">
+    <div class="mymodal" [ngClass]="[ modalSize ]">
         <ng-content></ng-content>
     </div>
 </div>
