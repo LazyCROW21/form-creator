@@ -42,6 +42,6 @@ export type MySection = {
 
 export type MyForm = {
     title: string;
-    descrption: string,
+    description: string,
     sections: MySection[]
 }

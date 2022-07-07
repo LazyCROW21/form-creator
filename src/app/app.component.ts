@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MyForm } from './common/form-type';
+import { FormService } from './form-service/form-service.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +9,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'form-creator';
+  activeForm: MyForm;
+  formSubscription: Subscription;
 
-  constructor() {}
+  constructor(private formService: FormService) {
+    this.activeForm = { title: '', description: '', sections: [] };
+    this.formSubscription = this.formService.form.subscribe((newForm) => {
+      this.activeForm = newForm;
+    });
+  }
 }

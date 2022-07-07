@@ -1,19 +1,13 @@
 <div class="section-nav-wrapper">
-    <div 
+    <button 
         *ngFor="let section of activeForm.sections; index as i"
-        class="nav-item"
-        [ngClass]="{ 'active-section': activeSection === i }"
+        class="waves-effect waves-light btn"
+        [ngClass]="{ 'active': activeSection === i }"
     >
-        <div class="nav-item-grid">
-            <div (click)="onNavItemClick(i)">
-                Section - {{ i + 1 }}
-            </div>
-            <div>
-                <button class="nav-btn"  (click)="onRemoveNavItemClick(i)">&cross;</button>
-            </div>
-        </div>
-    </div>
-    <button class="add-section-btn" (click)="onAddSection()">
+        <i *ngIf="activeForm.sections.length !== 1" class="material-icons right" (click)="onRemoveNavItemClick(i)">close</i>
+        <span (click)="onNavItemClick(i)" style="line-height: 2rem;">Section - {{ i + 1 }}</span>
+    </button>
+    <button class="waves-effect waves-teal btn-flat" (click)="onAddSection()">
         Add Section
     </button>
 </div>

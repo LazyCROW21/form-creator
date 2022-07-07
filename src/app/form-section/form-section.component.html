@@ -5,22 +5,24 @@
     <br>
     <h5 class="small-title">Questions: </h5>
     <div class="q-list" cdkDropList (cdkDropListDropped)="drop($event)">
-        <div class="q-box" *ngFor="let question of activeForm.sections[activeSection].questions; index as i" cdkDrag>
+        <div class="q-box z-depth-1" *ngFor="let question of activeForm.sections[activeSection].questions; index as i" cdkDrag>
             <div [ngSwitch]="question.type">
                 <ng-template [ngSwitchCase]="questionTypeText">
                     <label [for]="question.key">{{ question.props.label }}</label>
                     <input class="form-control" [placeholder]="question.props.placeholder" [id]="question.key">
                 </ng-template>
                 <ng-template [ngSwitchCase]="questionTypeCheckBox">
-                    <input type="checkbox" class="form-check" [id]="question.key">
+                    <input type="checkbox" [id]="question.key">
                     <label [for]="question.key">{{ question.props.label }}</label>
                 </ng-template>
                 <ng-template [ngSwitchCase]="questionTypeRadio">
                     <p>{{ question.props.groupLabel }}</p>
-                    <div *ngFor="let option of question.props.options; index as i">
-                        <input type="radio" [name]="question.key" [value]="option.value" [id]="question.key + '-' + i">
-                        <label [for]="question.key + '-' + i">{{ option.label }}</label>
-                    </div>
+                    <p *ngFor="let option of question.props.options; index as i">
+                        <label>
+                            <input class="with-gap" type="radio" [name]="question.key" [value]="option.value" [id]="question.key + '-' + i">
+                            <span>{{ option.label }}</span>
+                        </label>
+                    </p>
                 </ng-template>
                 <ng-template [ngSwitchCase]="questionTypeSelect">
                     <p>{{ question.props.label }}</p>
@@ -34,7 +36,9 @@
                     <p>{{ 'aaa' + question.key }}</p>
                 </ng-template>
             </div>
-            <button class="q-remove-btn" (click)="onRemoveSection(i)">&cross;</button>
+            <button class="btn-floating waves-effect waves-light red" (click)="onRemoveSection(i)">
+                <i class="material-icons">cancel</i>
+            </button>
         </div>
     </div>
     <div class="add-button-wrapper">

@@ -22,7 +22,7 @@ export class FormSectionComponent implements OnInit, OnDestroy {
   activeSection: number;
 
   constructor(private formService: FormService) {
-    this.activeForm = { title: '', descrption: '', sections: [] };
+    this.activeForm = { title: '', description: '', sections: [] };
     this.activeSection = 0;
     this.formSubscription = this.formService.form.subscribe((newForm) => {
       this.activeForm = newForm;

@@ -3,11 +3,8 @@
     flex-wrap: wrap;
 }
 
-.nav-item {
+.btn, .btn-flat {
     margin: 0.5rem 1rem;
-    padding: 0.5rem;
-    border: 1px solid lightgray;
-    min-width: 120px;
 }
 
 .nav-item-grid {

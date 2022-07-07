@@ -1,4 +1,16 @@
 <div class="container">
+  <h1>Form Editor</h1>
+  <div class="input-field">
+    <input id="f-title" type="text" class="validate" [(ngModel)]="activeForm.title">
+    <label for="f-title" class="active">Form title</label>
+  </div>
+  <br>
+  <div class="input-field">
+    <textarea id="f-desc" class="materialize-textarea" [(ngModel)]="activeForm.description"></textarea>
+    <label for="f-desc">Description</label>
+  </div>
+  <div class="divider"></div>
   <app-form-section-nav></app-form-section-nav>
+  <div class="divider"></div>
   <app-form-section></app-form-section>
 </div>

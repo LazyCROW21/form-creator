@@ -10,7 +10,7 @@ export class FormService {
   private activeSectionValue: number = 0;
   public form = new BehaviorSubject<MyForm>({
     title: 'Demo Form',
-    descrption: 'Demo form for demo purpose',
+    description: 'Demo form for demo purpose',
     sections: [
       {
         title: 'Hello',
@@ -62,7 +62,7 @@ export class FormService {
   });
   private formValue: MyForm = {
     title: 'Demo Form',
-    descrption: 'Demo form for demo purpose',
+    description: 'Demo form for demo purpose',
     sections: [
       {
         title: 'Hello',
@@ -141,6 +141,11 @@ export class FormService {
   }
 
   removeSection(idx: number) {
+    if(this.formValue.sections.length === 1) {
+      return;
+    }
+    this.activeSectionValue = 0;
+    this.activeSection.next(0);
     this.formValue.sections.splice(idx, 1);
     this.form.next({ ...this.formValue });
   }
