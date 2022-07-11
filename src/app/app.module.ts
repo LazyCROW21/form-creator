@@ -14,6 +14,7 @@ import { CheckboxInpGenComponent } from './form-section/input-generator/checkbox
 import { RadioInpGenComponent } from './form-section/input-generator/radio-inp-gen/radio-inp-gen.component';
 import { SelectInpGenComponent } from './form-section/input-generator/select-inp-gen/select-inp-gen.component';
 import { FormsModule } from '@angular/forms';
+import { FormPreviewComponent } from './form-preview/form-preview.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     TextInpGenComponent,
     CheckboxInpGenComponent,
     RadioInpGenComponent,
-    SelectInpGenComponent
+    SelectInpGenComponent,
+    FormPreviewComponent
   ],
   imports: [
     CommonModule,

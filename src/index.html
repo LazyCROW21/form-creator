@@ -15,8 +15,10 @@
   <app-root></app-root>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('select');
-      var instances = M.FormSelect.init(elems, {})
+      var selectElems = document.querySelectorAll('select');
+      var selectInstances = M.FormSelect.init(selectElems, {});
+      var tabElems = document.querySelectorAll('.tabs');
+      var tabInstance = M.Tabs.init(tabElems, { swipeable: false });
     });
     document.addEventListener('click', function (event) {
       let targetEle = event.target.type;

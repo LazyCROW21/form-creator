@@ -15,7 +15,7 @@
     <h5 class="small-title">Questions: </h5>
     <div class="q-list" cdkDropList (cdkDropListDropped)="drop($event)">
         <div class="q-box z-depth-1" *ngFor="let question of activeForm.sections[activeSection].questions; index as i"
-            cdkDrag>
+            cdkDrag cdkDragLockAxis="y">
             <div [ngSwitch]="question.type">
                 <ng-template [ngSwitchCase]="questionTypeText">
                     <label [for]="question.key">{{ question.props.label }}</label>

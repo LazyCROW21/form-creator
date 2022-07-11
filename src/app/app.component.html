@@ -1,33 +1,36 @@
 <div class="container">
-  <h1>Form Editor</h1>
-  <div class="input-field">
-    <input 
-      id="f-title" 
-      type="text" 
-      class="validate" 
-      [(ngModel)]="activeForm.title" 
-      (keydown)="startTypingTitle()" 
-      (keyup)="stopTypingTitle()"
-    >
-    <label for="f-title" class="active">Form title</label>
+  <br>
+  <ul id="tabs-swipe-demo" class="tabs">
+    <li class="tab col s3"><a class="active" href="#f-editor">Form Editor</a></li>
+    <li class="tab col s3"><a href="#f-json">Form JSON</a></li>
+    <li class="tab col s3"><a href="#f-preview">Form Preview</a></li>
+  </ul>
+  <div id="f-editor" class="col s12" style="height: auto !important;">
+    <h1>Form Editor</h1>
+    <div class="input-field">
+      <input id="f-title" type="text" class="validate" [(ngModel)]="activeForm.title" (keydown)="startTypingTitle()"
+        (keyup)="stopTypingTitle()">
+      <label for="f-title" class="active">Form title</label>
+    </div>
+    <br>
+    <div class="input-field">
+      <textarea id="f-desc" class="materialize-textarea" [(ngModel)]="activeForm.description"
+        (keydown)="startTypingDescription()" (keyup)="stopTypingDescription()"></textarea>
+      <label for="f-desc" class="active">Description</label>
+    </div>
+    <div class="divider"></div>
+    <app-form-section-nav></app-form-section-nav>
+    <div class="divider"></div>
+    <br>
+    <app-form-section></app-form-section>
+    <br>
   </div>
-  <br>
-  <div class="input-field">
-    <textarea 
-      id="f-desc" 
-      class="materialize-textarea" 
-      [(ngModel)]="activeForm.description"
-      (keydown)="startTypingDescription()" 
-      (keyup)="stopTypingDescription()"
-    ></textarea>
-    <label for="f-desc" class="active">Description</label>
+  <div id="f-json" class="col s12">
+    <pre>{{ activeForm | json}}</pre>
   </div>
-  <div class="divider"></div>
-  <app-form-section-nav></app-form-section-nav>
-  <div class="divider"></div>
-  <br>
-  <app-form-section></app-form-section>
-  <br>
+  <div id="f-preview" class="col s12">
+    <app-form-preview></app-form-preview>
+  </div>
   <br>
   <br>
 </div>
