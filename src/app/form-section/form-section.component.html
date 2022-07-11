@@ -22,10 +22,11 @@
                     <input class="form-control" [placeholder]="question.props.placeholder" [id]="question.key">
                 </ng-template>
                 <ng-template [ngSwitchCase]="questionTypeCheckBox">
-                    <p>
+                    <p>{{ question.props.groupLabel }}</p>
+                    <p *ngFor="let option of question.props.options; index as i">
                         <label>
-                            <input type="checkbox" [id]="question.key"/>
-                            <span>{{ question.props.label }}</span>
+                            <input type="checkbox" [id]="question.key+'-'+i" [name]="question.key" [value]="option.value" />
+                            <span>{{ option.label }}</span>
                         </label>
                     </p>
                 </ng-template>

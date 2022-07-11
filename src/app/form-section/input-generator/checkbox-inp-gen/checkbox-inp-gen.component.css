@@ -1,3 +1,9 @@
+.option-grid {
+    display: grid;
+    grid-template-columns: 4fr 4fr 2fr;
+    column-gap: 0.25rem;
+}
+
 .preview-wrapper {
     border: 1px solid black;
     border-radius: 0.25rem;

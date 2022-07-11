@@ -1,14 +1,36 @@
 <div class="text-gen-wrapper">
-    <p>Label</p>
-    <input type="text" class="form-control" placeholder="Label" [(ngModel)]="label">
+    <p>Group Label</p>
+    <input type="text" class="form-control" placeholder="Group label" [(ngModel)]="glabel">
+    <p>Options</p>
+    <div class="option-grid">
+        <input class="form-control" type="text" placeholder="Label" [(ngModel)]="optionLabel">
+        <input class="form-control" type="text" placeholder="Value" [(ngModel)]="optionValue">
+        <button class="waves-effect waves-light btn" style="margin-bottom: 1rem;" (click)="addOption()"
+            [disabled]="!isValidOption()">Add</button>
+    </div>
+    <div>
+        <div class="option-grid">
+            <p><strong>Label</strong></p>
+            <p><strong>Value</strong></p>
+            <p class="center-align"><strong>Action</strong></p>
+        </div>
+        <div *ngFor="let option of options; index as i" class="option-grid">
+            <p>{{ option.label }}</p>
+            <p>{{ option.value }}</p>
+            <button class="waves-effect waves-teal btn-flat" (click)="removeOption(i)">
+                <i class="material-icons">clear</i>
+            </button>
+        </div>
+    </div>
     <hr style="margin: 0.5rem 0rem;">
     <div class="preview-wrapper">
         <span class="preview-label">Preview</span>
         <br>
-        <p>
+        <p>{{ glabel }}</p>
+        <p *ngFor="let option of options; index as i">
             <label>
-                <input type="checkbox" />
-                <span>{{ label }}</span>
+                <input type="checkbox" [value]="option.value" />
+                <span>{{ option.label }}</span>
             </label>
         </p>
     </div>

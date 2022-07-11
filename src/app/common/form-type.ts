@@ -9,7 +9,8 @@ export type TextQuestion = {
 }
 
 export type CheckBoxQuestion = {
-    label: string;
+    groupLabel: string;
+    options: Option[];
 }
 
 export type RadioQuestion = {

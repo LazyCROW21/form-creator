@@ -36,7 +36,11 @@ export class FormService {
             type: QuestionTypes.CheckBox,
             key: 'a2',
             props: {
-              label: 'Hey Checkbox'
+              groupLabel: 'Hey Checkbox',
+              options: [
+                { label: 'Checkbox1', value: 'checkbox1' },
+                { label: 'Checkbox2', value: 'checkbox2' }
+              ]
             }
           },
           {
@@ -88,7 +92,11 @@ export class FormService {
             type: QuestionTypes.CheckBox,
             key: 'a2',
             props: {
-              label: 'Hey Checkbox'
+              groupLabel: 'Hey Checkbox',
+              options: [
+                { label: 'Checkbox1', value: 'checkbox1' },
+                { label: 'Checkbox2', value: 'checkbox2' }
+              ]
             }
           },
           {
