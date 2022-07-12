@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MyForm, MySection } from '../common/form-type';
@@ -38,6 +39,12 @@ export class FormSectionNavComponent implements OnInit, OnDestroy {
 
   onRemoveNavItemClick(idx: number) {
     this.formService.removeSection(idx);
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.activeForm.sections, event.previousIndex, event.currentIndex);
+    // move reordering logic to service
+    this.formService.form.next({ ...this.activeForm });
   }
 
   ngOnDestroy(): void {
